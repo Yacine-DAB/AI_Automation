@@ -65,4 +65,56 @@ def extract_sponsor_name(context: str) -> str:
      Respond with just the company name, no other text
      
      Text: {context} '''
-     response = client.chat.completions
+     response = client.chat.completions.create(
+          model="gpt-4o-mini-2024-07-18",
+          message=[
+               {'role': 'system', 'content': 'You are a sponsor detection system. Extract only the company name, nothing else.'},
+               {'role': 'user', 'content': prompt}
+          ],
+     )
+     
+     sponsor = response.choices[0].message.content.strip()
+     
+     # Clean up common Formatting issues
+     
+     if sponsor.lower() in ['none', 'no sponsor', 'no clear sponsor']:
+          return None
+     if sponsor.lower() in ['unknown', "can't determine", 'unclear']:
+          return None
+     
+     return sponsor
+
+
+def perse_sponsor(description: str, transcript: str) -> dict:
+     """  
+     Parse description and transcript to find potential sponsors.
+     Returns a dictionary with is_sponsored flag and list of sponsor brandds with context.
+     """
+     
+     all_text = f'{description}\n{transcript}'
+     sponsor_context = find_sponsor(all_text, sponsor_keywords)
+     
+     if not sponsor_context:
+          return {
+               'is_sponsored': False,
+               'brands': [],
+          }
+          
+     brands = []
+     seen_brands = set()
+     
+     for context, _ in sponsor_context:
+          sponsor_name = extract_sponsor_name(context)
+          if sponsor_name and sponsor_name.lower() not in seen_brands:
+               seen_brands.add(sponsor_name.lower())
+               brands.append({
+                    'name': sponsor_name,
+                    'context': context
+               })
+               
+     return {
+          'is_sponsored': bool(brands),
+          'brands': brands
+     }
+     
+     

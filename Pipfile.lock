@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "de9db00e61eb9e5079d90330d16031e1c127befeadbdf9f19b007096f8468044"
+            "sha256": "8dc206beaa0b37bc87558c5d7a76cc1f5f7ad904ff1246db0b0db0d27df56168"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -591,6 +591,15 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.27.2"
         },
+        "pyfiglet": {
+            "hashes": [
+                "sha256:758788018ab8faaddc0984e1ea05ff330d3c64be663c513cc1f105f6a3066dab",
+                "sha256:889b351d79c99e50a3f619c8f8e6ffdb27fd8c939fc43ecbd7559bd57d5f93ea"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.9'",
+            "version": "==1.0.2"
+        },
         "pymupdf": {
             "hashes": [
                 "sha256:15e6f4013ad0a029a2221920f9d2081f56dc43259dabfdf5cad7fbf1cee4b5a7",
@@ -612,6 +621,15 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==1.1.2"
+        },
+        "schedule": {
+            "hashes": [
+                "sha256:15fe9c75fe5fd9b9627f3f19cc0ef1420508f9f9a46f45cd0769ef75ede5f0b7",
+                "sha256:5bef4a2a0183abf44046ae0d164cadcac21b1db011bdd8102e4a0c1e91e06a7d"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.7'",
+            "version": "==1.2.2"
         },
         "sniffio": {
             "hashes": [
